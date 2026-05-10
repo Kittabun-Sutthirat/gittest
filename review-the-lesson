@@ -1,0 +1,249 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyOYY1W7zUxCks9TOvKsR1Go"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IwKKJGxhM6Wq",
+        "outputId": "a3052698-9eb7-4874-fc32-e58302a8a901"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ford\n",
+            "Hydra\n",
+            "2024\n",
+            "Benz\n"
+          ]
+        }
+      ],
+      "source": [
+        "class car :\n",
+        "    def __init__(self, make, year, model) :\n",
+        "        self.__make = make #private variable\n",
+        "        self.year = year # public variable\n",
+        "        self.model = model # public variable\n",
+        "\n",
+        "    def get_make(self) :\n",
+        "      return self.__make\n",
+        "\n",
+        "    def set_make(self, make) :\n",
+        "      self.__make = make\n",
+        "\n",
+        "car = car(\"Ford\", 2024, \"Hydra\")\n",
+        "print (car.get_make())\n",
+        "car.set_make(\"Toyota\")\n",
+        "print(car.model)\n",
+        "print(car.year)\n",
+        "#print(car.make) cannot print and insert value because it is private variable have to use get_make and set_make\n",
+        "car.set_make(\"Toyota\")\n",
+        "print (car.get_make())"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class car :\n",
+        "    def __init__(self, make, year, model) :\n",
+        "        self.make = make #public variable\n",
+        "        self.year = year # public variable\n",
+        "        self.model = model # public variable\n",
+        "\n",
+        "    def get_make(self) :\n",
+        "      return self.make\n",
+        "\n",
+        "    def set_make(self, make) :\n",
+        "      self.make = make\n",
+        "\n",
+        "    def description(self) :\n",
+        "      return f\"{self.make} {self.year} {self.model}\"\n",
+        "\n",
+        "class car_detail :\n",
+        "    def __init__(self, wheel, door, material) :\n",
+        "      self.wheel = wheel\n",
+        "      self.door = door\n",
+        "      self.material = material\n",
+        "\n",
+        "    def description(self) :\n",
+        "      return f\"{self.wheel} {self.door} {self.material}\"\n",
+        "\n",
+        "# class car is parent and car detail is child we can use function from parent\n",
+        "\n",
+        "car = car(\"Ford\", 2024, \"Hydra\")\n",
+        "print(car.description())\n",
+        "\n",
+        "car_detail = car_detail(4, 4, \"Solid\")\n",
+        "print(car_detail.description())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uDt8rfnlRW1l",
+        "outputId": "acab8e3f-0911-4edc-c2fb-57cf6743d1c2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ford 2024 Hydra\n",
+            "4 4 Solid\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import time\n",
+        "#การใช้คณิตศาสตร์ช่วยให้ process ได้ไวขึ้น\n",
+        "\n",
+        "def seq(n) :\n",
+        "\n",
+        "  total = 0\n",
+        "  for i in range(n) :\n",
+        "    total += i + 1\n",
+        "  return total\n",
+        "\n",
+        "# Recursive การเรียกฟังก์ชันของตัวเอง เรียกได้ไม่เกิน 1000 รอบ ประสิทธิภาพไม่ค่อยดี\n",
+        "def seq_recur(n) :\n",
+        "  if n == 1 :\n",
+        "    return 1\n",
+        "  return n + seq_recur(n-1)\n",
+        "\n",
+        "# Math God\n",
+        "def math_god(n) :\n",
+        "  return int(n/2*(2+(n-1)))\n",
+        "\n",
+        "n = int(input())\n",
+        "start = time.time()\n",
+        "print(n,\" times\")\n",
+        "print(\"answer seq : \",seq(n))\n",
+        "print(\"Time : \", (time.time() - start) * 1000)\n",
+        "\n",
+        "#start = time.time()\n",
+        "#print(\"answer recursive : \",seq_recur(n))\n",
+        "#print(\"Time : \", (time.time() - start) * 1000)\n",
+        "\n",
+        "start = time.time()\n",
+        "print(\"answer math god : \",math_god(n))\n",
+        "print(\"Time : \", (time.time() - start) * 1000)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dkvRUOjeVmlX",
+        "outputId": "f61910cc-d9be-4984-a0a5-d5755ebbd9b3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1\n",
+            "1  times\n",
+            "answer seq :  1\n",
+            "Time :  1.4696121215820312\n",
+            "answer math god :  1\n",
+            "Time :  1.0194778442382812\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install flake8"
+      ],
+      "metadata": {
+        "id": "5tycwwyUqNmc",
+        "outputId": "95f6d300-90d5-44f9-c62b-66fc4af8ff16",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting flake8\n",
+            "  Downloading flake8-7.3.0-py2.py3-none-any.whl.metadata (3.8 kB)\n",
+            "Collecting mccabe<0.8.0,>=0.7.0 (from flake8)\n",
+            "  Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)\n",
+            "Collecting pycodestyle<2.15.0,>=2.14.0 (from flake8)\n",
+            "  Downloading pycodestyle-2.14.0-py2.py3-none-any.whl.metadata (4.5 kB)\n",
+            "Collecting pyflakes<3.5.0,>=3.4.0 (from flake8)\n",
+            "  Downloading pyflakes-3.4.0-py2.py3-none-any.whl.metadata (3.5 kB)\n",
+            "Downloading flake8-7.3.0-py2.py3-none-any.whl (57 kB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m57.9/57.9 kB\u001b[0m \u001b[31m3.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)\n",
+            "Downloading pycodestyle-2.14.0-py2.py3-none-any.whl (31 kB)\n",
+            "Downloading pyflakes-3.4.0-py2.py3-none-any.whl (63 kB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m63.6/63.6 kB\u001b[0m \u001b[31m3.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: pyflakes, pycodestyle, mccabe, flake8\n",
+            "Successfully installed flake8-7.3.0 mccabe-0.7.0 pycodestyle-2.14.0 pyflakes-3.4.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class student:\n",
+        "  def __init__(self, name, background):\n",
+        "    self.name = name\n",
+        "    self.background = background\n",
+        "\n",
+        "  def introduce(self):\n",
+        "    print(f\"Hi, I am {self.name} and I come from {self.background}\")\n",
+        "\n",
+        "me = student(\"Kittabun\", \"SQL and Spark\")\n",
+        "me.introduce()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ns0sbvq5odfG",
+        "outputId": "a9b6d12a-539a-41b0-b602-cdaa498ac99e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Hi, I am Kittabun and I come from SQL and Spark\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
